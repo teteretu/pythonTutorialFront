@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -11,6 +11,11 @@ export class ApiService {
     constructor(private http: HttpClient) { }
 
     public getHello(): Observable<any> {
-        return this.http.get(this.apiUrl);
+        const headers = new HttpHeaders();
+        headers.append('Access-Control-Allow-Headers', 'Content-Type');
+        headers.append('Access-Control-Allow-Methods', 'GET');
+        headers.append('Access-Control-Allow-Origin', '*');
+        
+        return this.http.get(this.apiUrl, {headers: headers});
     }
 }

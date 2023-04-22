@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
 
     public ngOnInit() {
         this.apiService.getHello().subscribe((data: any) => {
+            console.log("TESTEE", data);
             this.message = data.hello;
         });
     }
